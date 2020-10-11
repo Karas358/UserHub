@@ -8,9 +8,7 @@ a.navbar-brand {
 }
 
 /* Provide sufficient contrast against white background */
-a {
-  color: #0366d6;
-}
+
 
 .btn-primary {
   color: #fff;
@@ -72,15 +70,6 @@ body {
 .card:hover {
     box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
 }
-/*.wrapper {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 10px;
-    grid-auto-rows: minmax(100px, auto);
-    grid-column: 3;
-    grid-row: 4;
-}*/
-
 .wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr;

@@ -4,9 +4,6 @@
 @{
     ViewData["Title"] = "View Users";
 }
-
-
-
 <div class="row">
     <div class="col-lg-10 col-sm-12">
         <h2>My users</h2>
@@ -18,4 +15,3 @@
 <hr />
 @(await Html.RenderComponentAsync<Users>(RenderMode.ServerPrerendered))
 <script src="_framework/blazor.server.js"></script>
-@*<script src="~/_framework/blazor.webassembly.js"></script>*@
