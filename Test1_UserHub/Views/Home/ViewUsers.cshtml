@@ -1,0 +1,21 @@
+﻿@using Test1_UserHub.Components
+@model IEnumerable<Test1_UserHub.Models.User>
+
+@{
+    ViewData["Title"] = "View Users";
+}
+
+
+
+<div class="row">
+    <div class="col-lg-10 col-sm-12">
+        <h2>My users</h2>
+    </div>
+    <div class="col-lg-2 col-sm-12">
+        <a class="btn btn-dark" asp-controller="Home" asp-action="AddUser"><span class="fa fa-plus"></span> New User</a>
+    </div>
+</div>
+<hr />
+@(await Html.RenderComponentAsync<Users>(RenderMode.ServerPrerendered))
+<script src="_framework/blazor.server.js"></script>
+@*<script src="~/_framework/blazor.webassembly.js"></script>*@

@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row">
+    <div class="col-12   col-sm-12">
+        <div class="text-center">
+            <h2 class="display-3">Hi, there.</h2>
+            <h2 >Pick an activity to start.</h2>
+            <p>Remember you can as many users as you like, your storage is your limit.</p>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6 col-sm-12 align-self-md-center mx-auto text-dark">
+        <div class="row text-center ">
+            <div class="col-lg-6 col-sm-12 p-1">
+                <a class="card bg-light text-dark" asp-controller="Home" asp-action="ViewUsers" style="text-decoration:none">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <span class="fa fa-5x fa-users"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <h2>View Hub</h2>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-6 col-sm-12 p-1">
+                <a class="card bg-light text-dark" asp-controller="Home" asp-action="AddUser" style="text-decoration:none">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <span class="fa fa-5x fa-user-plus"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <h2>Add User</h2>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

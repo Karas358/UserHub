@@ -1,0 +1,133 @@
+﻿@using Microsoft.AspNetCore.Components.Web
+@using Microsoft.AspNetCore.Components.Forms
+@using Test1_UserHub.Models
+@using Test1_UserHub.Services
+@inject Test1_UserHub.Services.XMLUserService XmlUserService
+
+
+@{
+    if (XmlUserService.getAllUsers().Count<User>() == 0)
+    {
+        <h2 class="display-3">You still need to upload your users.</h2>
+    }
+    else
+    {
+        <div class="wrapper">
+            @{
+                foreach (User user in XmlUserService.getAllUsers())
+                {
+                    <div class="card bg-light text-center">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <span class="fa fa-4x fa-user"></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <h3>@user.Name, @user.Surname</h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    @user.Email
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    @user.Cellphone
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <div class="col-12">
+                                    <button @onclick="(e => getUser(user.ID))" class="btn btn-outline-dark" data-toggle="modal" data-target="#userModal"><span class="fa fa-edit"></span> Edit</button>
+                                    <button @onclick="(e => removeUser(user.ID))" class="btn btn-outline-dark"><span class="fa fa-remove"></span> Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+
+        </div>
+    }
+}
+
+
+@if (currentUser != null)
+{
+    <div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content text-center bg-light">
+
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-10">
+                        </div>
+                        <div class="col-2">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <h3>@currentUser.Name, @currentUser.Surname</h3>
+                        </div>
+                        
+
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <span class="fa fa-4x fa-user"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <EditForm Model="@currentUser" OnValidSubmit="@(e => editUser(currentUser))">
+                                <DataAnnotationsValidator />
+                                <div class="form-group">
+                                    <label for="Email Address" class="control-label"></label>
+                                    <input class="form-control" @bind-value="@currentUser.Email" />
+                                    <ValidationMessage For=@(() => currentUser.Email) class="text-danger"/>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Phone Number" class="control-label"></label>
+                                    <input class="form-control" @bind-value="@currentUser.Cellphone" />
+                                    <ValidationMessage For=@(() => currentUser.Cellphone) class="text-danger" />
+                                </div>
+                                <hr />
+                                <div class="form-group">
+                                    <button type="submit" value="Save" class="btn btn-dark" ><span class="fa fa-save"></span> Save</button>
+                                </div>
+                            </EditForm>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+@code{
+    User currentUser;
+    void getUser(string id)
+    {
+        currentUser = XmlUserService.getUser(id);
+    }
+
+    private void removeUser(string id)
+    {
+        XmlUserService.removeUser(id);
+    }
+    private void editUser(User user)
+    {
+        
+        XmlUserService.editUser(user);
+        user = null;
+        
+    }
+}
